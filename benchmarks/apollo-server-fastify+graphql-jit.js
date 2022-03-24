@@ -6,20 +6,23 @@ const { compileQuery } = require("graphql-jit");
 const app = require("fastify")();
 const { createApolloSchema } = require("../lib/schemas/createApolloSchema");
 
-const schema = createApolloSchema();
+(async function () {
+  const schema = createApolloSchema();
 
-const cache = {};
+  const cache = {};
 
-const server = new ApolloServer({
-  schema,
-  executor: ({ source, context }) => {
-    if (!(source in cache)) {
-      const document = parse(source);
-      cache[source] = compileQuery(schema, document);
-    }
+  const server = new ApolloServer({
+    schema,
+    executor: ({ source, context }) => {
+      if (!(source in cache)) {
+        const document = parse(source);
+        cache[source] = compileQuery(schema, document);
+      }
 
-    return cache[source].query({}, context, {});
-  },
-});
-app.register(server.createHandler());
-app.listen(4001);
+      return cache[source].query({}, context, {});
+    },
+  });
+  await server.start();
+  app.register(await server.createHandler());
+  await app.listen(4001);
+})();

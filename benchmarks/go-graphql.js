@@ -2,7 +2,7 @@
 const { exec } = require("child_process");
 const path = require("path");
 
-const forked = exec("/usr/local/go/bin/go run server.go", { cwd: path.join(__dirname, "..", "other-benchmarks/go-gql/") }, (error, stdout, stderr) => {
+const forked = exec("/home/uladzislau/.asdf/shims/go run server.go", { cwd: path.join(__dirname, "..", "other-benchmarks/go-gql/") }, (error, stdout, stderr) => {
   if (error) {
     console.log(`error: ${error.message}`);
     return;
