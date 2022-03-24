@@ -3,7 +3,7 @@ const { exec } = require("child_process");
 const path = require("path");
 
 const forked = exec(
-  "/home/uladzislau/.asdf/shims/mix phx.server",
+  "mix phx.server",
   {
     cwd: path.join(__dirname, "..", "other-benchmarks/elixir-phoenix-absinthe"),
     env: {
