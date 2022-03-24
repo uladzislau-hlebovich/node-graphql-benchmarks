@@ -5,16 +5,16 @@ defmodule BenchmarkGraphQL.Resolvers do
         books =
           Enum.map(1..3, fn _ ->
             %{
-              id: Faker.UUID.v4(),
-              name: Faker.Internet.domain_name(),
-              num_pages: Faker.Random.Elixir.random_between(1, 200)
+              id: "123e4567-e89b-12d3-a456-426614174000",
+              name: "hettinger.name",
+              num_pages: 50
             }
           end)
 
         %{
-          id: Faker.UUID.v4(),
-          name: Faker.Person.name(),
-          company: Faker.Company.bs(),
+          id: "123e4567-e89b-12d3-a456-426614174000",
+          name: "Elza Hackett",
+          company: "drive interactive architectures",
           books: books
         }
       end)
