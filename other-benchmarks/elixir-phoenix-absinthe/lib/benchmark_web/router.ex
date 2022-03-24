@@ -8,9 +8,6 @@ defmodule BenchmarkWeb.Router do
   scope "/" do
     pipe_through :api
 
-    forward "/", Absinthe.Plug.GraphiQL,
-            schema: BenchmarkGraphQL.Schema
-
     forward "/query", Absinthe.Plug,
             schema: BenchmarkGraphQL.Schema
   end
