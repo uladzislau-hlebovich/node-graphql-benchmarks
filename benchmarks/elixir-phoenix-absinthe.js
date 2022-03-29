@@ -9,9 +9,9 @@ const forked = exec(
     env: {
       ...process.env,
       MIX_ENV: "prod",
-      SECRET_KEY_BASE: 'SECRET_KEY_BASE'
+      SECRET_KEY_BASE: "SECRET_KEY_BASE",
     },
-    maxBuffer: Infinity
+    maxBuffer: Infinity,
   },
   (error, stdout, stderr) => {
     if (error) {
