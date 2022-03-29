@@ -12,9 +12,9 @@ For further details, please check out [this video](https://www.youtube.com/watch
 # Usage
 
 ```
-git clone https://github.com/uladzislau-helbovich/benchmarks
+git clone https://github.com/uladzislau-helbovich/node-graphql-benchmarks
 cd benchmarks
-npm install
+npm ci
 npm start
 ```
 
@@ -22,6 +22,8 @@ Build elixir-phoenix-absinthe:
 
 ```
 cd other-benchmarks/elixir-phoenix-absinthe
+mix local.hex --force
+mix local.rebar --force
 mix deps.get --only prod
 MIX_ENV=prod mix compile
 ```
@@ -30,7 +32,7 @@ Build go-gql:
 
 ```
 cd other-benchmarks/go-gql
-go build -ldflags "-s -w".
+go build -ldflags "-s -w" .
 ```
 
 Build HotChocolateBenchmark:
