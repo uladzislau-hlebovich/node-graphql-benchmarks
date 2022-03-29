@@ -1,30 +1,29 @@
 package data
 
 import (
+	"fmt"
+
 	"github.com/fibs7000/go-graphql-benchmark/graph/model"
-	"github.com/jaswdr/faker"
 )
 
 func GenData() []*model.Author {
-	faker := faker.New()
-
 	var authors []*model.Author
 	for i := 0; i < 20; i++ {
 		var books []*model.Book
 
 		for k := 0; k < 3; k++ {
 			book := model.Book{
-				ID:       faker.UUID().V4(),
-				Name:     faker.Person().LastName(),
-				NumPages: faker.IntBetween(100, 10000),
+				ID:       fmt.Sprintf("book-%d-%d", i, k),
+				Name:     fmt.Sprintf("Book %d", k),
+				NumPages: i * k * 100,
 			}
 			books = append(books, &book)
 		}
 
 		author := model.Author{
-			ID:      faker.UUID().V4(),
-			Name:    faker.Person().FirstName(),
-			Company: faker.Company().BS(),
+			ID:      fmt.Sprintf("author-%d", i),
+			Name:    fmt.Sprintf("Author %d", i),
+			Company: fmt.Sprintf("Company %d", i),
 			Books:   books,
 		}
 		authors = append(authors, &author)
